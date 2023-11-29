@@ -1,6 +1,6 @@
 import { uploadPhoto, createUser } from './utils';
 
-async function asyncUploadUser () {
+async function asyncUploadUser() {
   try {
     const photo = await uploadPhoto();
     const user = await createUser();
@@ -11,3 +11,8 @@ async function asyncUploadUser () {
     return { photo: null, user: null };
   }
 }
+
+// Example usage
+asyncUploadUser().then((result) => {
+    console.log(result);
+});
