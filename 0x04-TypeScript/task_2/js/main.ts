@@ -1,4 +1,4 @@
-// 5. Advanced types Part 1
+// 5. ADVANCED TYPES PART 1
 // A DirectorInterface interface with the 3 expected methods
 interface DirectorInterface {
     workFromHome(): string,
@@ -51,3 +51,47 @@ function createEmployee(salary: string | number): Director | Teacher {
 console.log(createEmployee(200));
 console.log(createEmployee(1000));
 console.log(createEmployee('$500'));
+
+
+
+
+// 6. CREATING FUNCTIONS SPECIFIC TO EMPLOYEES
+// Define Employee interface
+interface Employee {
+    employeeId: number;
+    role: 'Director' | 'Teacher';
+}
+// Define workDirectorTasks function
+function workDirectorTasks() {
+    console.log('Getting to director tasks');
+}
+
+// Define workTeacherTasks function
+function workTeacherTasks() {
+    console.log('Getting to teacher tasks');
+}
+
+function isDirector(employee: Employee): employee is Employee & { role: 'Director' } {
+    return employee.role === 'Director';
+}
+
+function executeWork(employee: Employee) {
+    if (isDirector(employee)) {
+        workDirectorTasks();
+    }
+    workTeacherTasks();
+}
+
+
+// 7. STRING LITERAL TYPES
+type Subjects = "Math" | "History";
+
+function teachclass(todayClass: Subjects): string {
+    if (todayClass === "Math") {
+        return "Teaching Math";
+    }
+    else if (todayClass === "History") {
+        return "Teaching History";
+    }
+    return '';
+}
