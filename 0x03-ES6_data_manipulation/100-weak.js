@@ -1,11 +1,13 @@
-// weakMap
-let apiCalls = 0;
+// Create a WeakMap to track the number of queries for each endpoint
+let apiViews = 0;
 
-export const weakMap = new WeakMap();
-export default function queryAPI(endpoint) {
-  apiCalls += 1;
-  if (apiCalls >= 5) {
+const weakMap = new WeakMap();
+function queryAPI(endpoint) {
+  apiViews += 1;
+  if (apiViews >= 5) {
     throw Error('Endpoint load is high');
   }
-  weakMap.set(endpoint, apiCalls);
+  weakMap.set(endpoint, apiViews);
 }
+
+export { weakMap, queryAPI };
